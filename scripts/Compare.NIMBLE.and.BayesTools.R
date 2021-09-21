@@ -15,8 +15,8 @@ library(pracma)
 #################################################################################################################
 # MCMC parameters
 Nchains = 2     # Number of MCMC chains
-Niter = 10000
-Nburnin = 5000
+Niter = 5000
+Nburnin = 1000
 thin = 5
 
 # Wavelength parameters
@@ -284,7 +284,7 @@ settings_MCMC <- list(iterations = Niter, nrChains = Nchains)
 # Run inversion
 setup <- BayesianTools::createBayesianSetup(likelihood, prior, parallel = FALSE)
 samples <- BayesianTools::runMCMC(setup,settings = settings_MCMC)
-samples <- BayesianTools::runMCMC(samples,settings = settings_MCMC)
+# samples <- BayesianTools::runMCMC(samples,settings = settings_MCMC)
 
 param_all_BT <- getSample(samples,start = Nburnin,thin = thin)
 colnames(param_all_BT) <- Prospect_param_names
